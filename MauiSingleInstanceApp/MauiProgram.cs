@@ -43,9 +43,12 @@ namespace MauiSingleInstanceApp
         }
 
         // this event will run for old app instances
+        #ifdef WINDOWS
+        // AppActionHelper only defined on windows platform
         private static void HandleAppActions(string? arguments) =>
             HandleAppAction(AppActionsHelper.GetAppActionId(arguments));
-
+        #endif
+            
         // this event will run for new app instances
         private static void HandleAppActions(AppAction appAction) =>
             HandleAppAction(appAction.Id);
